@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRADO — Central Interna</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0d0d0d;
+      color: #e0d8d0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #1a1a1a;
+      border-bottom: 1px solid rgba(201, 169, 110, 0.12);
+      padding: 0 24px;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: #ffffff;
+      letter-spacing: 3px;
+    }
+    .logo-text span { color: #c9a96e; }
+    .badge-interno {
+      background: rgba(201, 169, 110, 0.12);
+      border: 1px solid rgba(201, 169, 110, 0.25);
+      color: #c9a96e;
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+      font-weight: 600;
+    }
+    .header-sub { color: #8a8580; font-size: 0.85rem; }
+
+    main {
+      flex: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 50px 24px;
+      width: 100%;
+    }
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+    .page-sub {
+      color: #8a8580;
+      font-size: 0.95rem;
+      margin-bottom: 40px;
+    }
+    .page-sub span { color: #c9a96e; }
+
+    /* ── FILTROS PRINCIPAIS (evento) ── */
+    .filter-section-label {
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #5a5550;
+      margin-bottom: 10px;
+    }
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 8px 18px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #8a8580;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: 'Inter', sans-serif;
+    }
+    .filter-btn:hover { border-color: rgba(201,169,110,0.3); color: #c9a96e; }
+    .filter-btn.active {
+      background: rgba(201,169,110,0.1);
+      border-color: #c9a96e;
+      color: #c9a96e;
+    }
+
+    /* ── SUBFILTROS (mídia) ── */
+    .subfilter-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .subfilter-btn {
+      padding: 6px 14px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.04);
+      color: #5a5550;
+      font-size: 0.72rem;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: 'Inter', sans-serif;
+      border-radius: 20px;
+    }
+    .subfilter-btn:hover { border-color: rgba(201,169,110,0.2); color: #c9a96e; }
+    .subfilter-btn.active {
+      background: rgba(201,169,110,0.08);
+      border-color: rgba(201,169,110,0.25);
+      color: #c9a96e;
+    }
+
+    /* ── LISTA ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .card-item {
+      background: #1a1a1a;
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 4px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      transition: all 0.25s ease;
+    }
+    .card-item:hover { border-color: rgba(201,169,110,0.2); }
+    .card-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex: 1;
+      min-width: 0;
+    }
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(201,169,110,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #c9a96e;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .card-info { flex: 1; min-width: 0; }
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+    }
+    .card-desc {
+      font-size: 0.85rem;
+      color: #8a8580;
+      line-height: 1.4;
+    }
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 0.6rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 2px 10px;
+      border-radius: 2px;
+      font-weight: 600;
+    }
+    .tag-casamento { background: rgba(201,169,110,0.1); color: #c9a96e; border: 1px solid rgba(201,169,110,0.15); }
+    .tag-debutante { background: rgba(232,192,96,0.08); color: #e8c060; border: 1px solid rgba(232,192,96,0.1); }
+    .tag-infantil  { background: rgba(255,150,200,0.06); color: #ff99cc; border: 1px solid rgba(255,150,200,0.1); }
+    .tag-gestante  { background: rgba(180,220,255,0.06); color: #88ccff; border: 1px solid rgba(180,220,255,0.1); }
+    .tag-institucional { background: rgba(180,200,180,0.06); color: #a0c0a0; border: 1px solid rgba(180,200,180,0.1); }
+    .tag-estudio   { background: rgba(200,180,220,0.06); color: #c0a0dd; border: 1px solid rgba(200,180,220,0.1); }
+    .tag-fotografia { background: rgba(201,169,110,0.1); color: #c9a96e; border: 1px solid rgba(201,169,110,0.15); }
+    .tag-filmagem  { background: rgba(100,200,255,0.06); color: #88ccff; border: 1px solid rgba(100,200,255,0.1); }
+
+    .card-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .btn-copy {
+      padding: 10px 18px;
+      background: transparent;
+      border: 1px solid rgba(201,169,110,0.2);
+      color: #c9a96e;
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    .btn-copy:hover { background: rgba(201,169,110,0.08); border-color: #c9a96e; }
+    .btn-copy.copied { background: rgba(100,255,180,0.06); border-color: #60dda0; color: #60dda0; }
+    .btn-copy i { font-size: 0.85rem; }
+    .btn-open {
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #8a8580;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      font-size: 0.9rem;
+    }
+    .btn-open:hover { border-color: #c9a96e; color: #c9a96e; }
+
+    /* ── LEGENDA ── */
+    .legend {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: #6a6560;
+    }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #2a2a2a;
+      border: 1px solid rgba(201,169,110,0.15);
+      color: #c9a96e;
+      padding: 12px 24px;
+      font-size: 0.85rem;
+      border-radius: 4px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.35s ease;
+      white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast i { margin-right: 10px; }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #5a5550;
+    }
+    .empty-state i { font-size: 2.5rem; margin-bottom: 16px; color: #3a3530; }
+
+    @media (max-width: 768px) {
+      .header-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .card-item { flex-direction: column; align-items: flex-start; }
+      .card-right { width: 100%; justify-content: flex-end; }
+      .btn-copy { flex: 1; justify-content: center; }
+      .page-title { font-size: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .card-left { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .card-right { flex-wrap: wrap; gap: 8px; }
+      .btn-open { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo-area">
+        <span class="logo-text">PRADO<span>.</span></span>
+        <span class="badge-interno"><i class="fas fa-lock" style="margin-right:6px;"></i>Uso Interno</span>
+      </div>
+      <span class="header-sub"><i class="fas fa-user-shield" style="margin-right:6px;color:#c9a96e;"></i>Acesso exclusivo da equipe</span>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="page-title">Central de Páginas</h1>
+    <p class="page-sub">Organize e compartilhe os links das páginas com os clientes. <span>Total: <strong id="totalCount">0</strong> páginas</span></p>
+
+    <!-- ── FILTROS PRINCIPAIS: TIPO DE EVENTO ── -->
+    <div class="filter-section-label">Tipo de Evento</div>
+    <div class="filter-bar" id="eventFilterBar">
+      <button class="filter-btn active" data-filter="all">Todas</button>
+      <button class="filter-btn" data-filter="casamento">Casamento</button>
+      <button class="filter-btn" data-filter="debutante">15 Anos</button>
+      <button class="filter-btn" data-filter="infantil">Infantil</button>
+      <button class="filter-btn" data-filter="gestante">Gestante</button>
+      <button class="filter-btn" data-filter="institucional">Institucional</button>
+      <button class="filter-btn" data-filter="estudio">Estúdio</button>
+    </div>
+
+    <!-- ── SUBFILTROS: TIPO DE MÍDIA ── -->
+    <div class="filter-section-label" style="margin-top:2px;">Tipo de Mídia</div>
+    <div class="subfilter-bar" id="mediaFilterBar">
+      <button class="subfilter-btn active" data-filter="todas-midias">Todas</button>
+      <button class="subfilter-btn" data-filter="fotografia">📷 Fotografia</button>
+      <button class="subfilter-btn" data-filter="filmagem">🎥 Filmagem</button>
+    </div>
+
+    <div class="cards-grid" id="cardsGrid"></div>
+
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#c9a96e;"></span>Casamento</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#e8c060;"></span>15 Anos</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#ff99cc;"></span>Infantil</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#88ccff;"></span>Gestante</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#a0c0a0;"></span>Institucional</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#c0a0dd;"></span>Estúdio</span>
+    </div>
+  </main>
+
+  <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Link copiado!</span></div>
+
+  <script>
+    /* ═══════════════════════════════════════════════
+       DADOS CENTRALIZADOS
+       ➕ Adicione novas páginas aqui
+       ═══════════════════════════════════════════════ */
+    const PAGINAS = [
+
+      // ═══════ CASAMENTO ═══════
+      {
+        id: 'casamento-foto-pp',
+        arquivo: 'casamentofotografiapp.html',
+        nome: 'Casamento — Presidente Prudente (Fotos)',
+        descricao: 'Orçamento de fotografia para casamentos em Presidente Prudente e região.',
+        icone: 'fa-camera',
+        evento: 'casamento',
+        midia: 'fotografia'
+      },
+      {
+        id: 'casamento-foto-pv',
+        arquivo: 'casamentofotografiapv.html',
+        nome: 'Casamento — Presidente Venceslau (Fotos)',
+        descricao: 'Orçamento de fotografia para casamentos em Presidente Venceslau e região.',
+        icone: 'fa-camera',
+        evento: 'casamento',
+        midia: 'fotografia'
+      },
+      {
+        id: 'casamento-filme-pp',
+        arquivo: 'casamentofilmagempp.html',
+        nome: 'Casamento — Presidente Prudente (Filmagem)',
+        descricao: 'Orçamento de filmagem para casamentos em Presidente Prudente e região.',
+        icone: 'fa-video',
+        evento: 'casamento',
+        midia: 'filmagem'
+      },
+      {
+        id: 'casamento-filme-pv',
+        arquivo: 'casamentofilmagempv.html',
+        nome: 'Casamento — Presidente Venceslau (Filmagem)',
+        descricao: 'Orçamento de filmagem para casamentos em Presidente Venceslau e região.',
+        icone: 'fa-video',
+        evento: 'casamento',
+        midia: 'filmagem'
+      },
+
+      // ═══════ 15 ANOS ═══════
+      {
+        id: 'debutante-foto-pp',
+        arquivo: 'debutantefotografiapp.html',
+        nome: '15 Anos — Presidente Prudente (Fotos)',
+        descricao: 'Orçamento de fotografia para festa de 15 anos em Presidente Prudente e região.',
+        icone: 'fa-camera',
+        evento: 'debutante',
+        midia: 'fotografia'
+      },
+      {
+        id: 'debutante-foto-pv',
+        arquivo: 'debutantefotografiapv.html',
+        nome: '15 Anos — Presidente Venceslau (Fotos)',
+        descricao: 'Orçamento de fotografia para festa de 15 anos em Presidente Venceslau e região.',
+        icone: 'fa-camera',
+        evento: 'debutante',
+        midia: 'fotografia'
+      },
+      {
+        id: 'debutante-filme-pp',
+        arquivo: 'debutantefilmagempp.html',
+        nome: '15 Anos — Presidente Prudente (Filmagem)',
+        descricao: 'Orçamento de filmagem para festa de 15 anos em Presidente Prudente e região.',
+        icone: 'fa-video',
+        evento: 'debutante',
+        midia: 'filmagem'
+      },
+      {
+        id: 'debutante-filme-pv',
+        arquivo: 'debutantefilmagempv.html',
+        nome: '15 Anos — Presidente Venceslau (Filmagem)',
+        descricao: 'Orçamento de filmagem para festa de 15 anos em Presidente Venceslau e região.',
+        icone: 'fa-video',
+        evento: 'debutante',
+        midia: 'filmagem'
+      },
+
+      // ═══════ INFANTIL ═══════
+      {
+        id: 'infantil-foto-pp',
+        arquivo: 'infantilfotografiapp.html',
+        nome: 'Infantil — Presidente Prudente (Fotos)',
+        descricao: 'Orçamento de fotografia para festas infantis em Presidente Prudente e região.',
+        icone: 'fa-cake-candles',
+        evento: 'infantil',
+        midia: 'fotografia'
+      },
+      {
+        id: 'infantil-foto-pv',
+        arquivo: 'infantilfotografiapv.html',
+        nome: 'Infantil — Presidente Venceslau (Fotos)',
+        descricao: 'Orçamento de fotografia para festas infantis em Presidente Venceslau e região.',
+        icone: 'fa-cake-candles',
+        evento: 'infantil',
+        midia: 'fotografia'
+      },
+      {
+        id: 'infantil-filme-pp',
+        arquivo: 'infantilfilmagempp.html',
+        nome: 'Infantil — Presidente Prudente (Filmagem)',
+        descricao: 'Orçamento de filmagem para festas infantis em Presidente Prudente e região.',
+        icone: 'fa-video',
+        evento: 'infantil',
+        midia: 'filmagem'
+      },
+      {
+        id: 'infantil-filme-pv',
+        arquivo: 'infantilfilmagempv.html',
+        nome: 'Infantil — Presidente Venceslau (Filmagem)',
+        descricao: 'Orçamento de filmagem para festas infantis em Presidente Venceslau e região.',
+        icone: 'fa-video',
+        evento: 'infantil',
+        midia: 'filmagem'
+      },
+
+      // ═══════ GESTANTE ═══════
+      {
+        id: 'gestante-foto-pp',
+        arquivo: 'gestantefotografiapp.html',
+        nome: 'Gestante — Presidente Prudente (Fotos)',
+        descricao: 'Orçamento de ensaio gestante e newborn em Presidente Prudente e região.',
+        icone: 'fa-baby',
+        evento: 'gestante',
+        midia: 'fotografia'
+      },
+      {
+        id: 'gestante-foto-pv',
+        arquivo: 'gestantefotografiapv.html',
+        nome: 'Gestante — Presidente Venceslau (Fotos)',
+        descricao: 'Orçamento de ensaio gestante e newborn em Presidente Venceslau e região.',
+        icone: 'fa-baby',
+        evento: 'gestante',
+        midia: 'fotografia'
+      },
+      {
+        id: 'gestante-filme-pp',
+        arquivo: 'gestantefilmagempp.html',
+        nome: 'Gestante — Presidente Prudente (Filmagem)',
+        descricao: 'Orçamento de filmagem de ensaio gestante em Presidente Prudente e região.',
+        icone: 'fa-video',
+        evento: 'gestante',
+        midia: 'filmagem'
+      },
+      {
+        id: 'gestante-filme-pv',
+        arquivo: 'gestantefilmagempv.html',
+        nome: 'Gestante — Presidente Venceslau (Filmagem)',
+        descricao: 'Orçamento de filmagem de ensaio gestante em Presidente Venceslau e região.',
+        icone: 'fa-video',
+        evento: 'gestante',
+        midia: 'filmagem'
+      },
+
+      // ═══════ INSTITUCIONAL (sem cidade) ═══════
+      {
+        id: 'institucional-foto',
+        arquivo: 'institucional.html',
+        nome: 'Institucional (Fotos)',
+        descricao: 'Orçamento de fotografia institucional para empresas, eventos corporativos e profissionais.',
+        icone: 'fa-building',
+        evento: 'institucional',
+        midia: 'fotografia'
+      },
+      {
+        id: 'institucional-filme',
+        arquivo: 'institucional.html',
+        nome: 'Institucional (Filmagem)',
+        descricao: 'Orçamento de filmagem institucional para empresas, eventos corporativos e profissionais.',
+        icone: 'fa-building',
+        evento: 'institucional',
+        midia: 'filmagem'
+      },
+
+      // ═══════ ESTÚDIO (sem cidade) ═══════
+      {
+        id: 'estudio-foto',
+        arquivo: 'estudio.html',
+        nome: 'Estúdio (Fotos)',
+        descricao: 'Orçamento de ensaio em estúdio, book profissional e retratos.',
+        icone: 'fa-camera-retro',
+        evento: 'estudio',
+        midia: 'fotografia'
+      }
+
+      // ═══════════════════════════════════════════
+      // ➕ ADICIONE NOVAS PÁGINAS ABAIXO
+      // ═══════════════════════════════════════════
+      // {
+      //   id: 'meu-novo-servico',
+      //   arquivo: 'meunovoarquivo.html',
+      //   nome: 'Nome do Serviço — Cidade (Tipo)',
+      //   descricao: 'Descrição clara do que essa página contém.',
+      //   icone: 'fa-star',
+      //   evento: 'casamento',     ← evento: casamento | debutante | infantil | gestante | institucional | estudio
+      //   midia: 'fotografia'      ← mídia: fotografia | filmagem
+      // }
+    ];
+
+    /* ═══════════════════════════════════════════
+       LÓGICA DE FILTROS
+       ═══════════════════════════════════════════ */
+    const grid = document.getElementById('cardsGrid');
+    const totalSpan = document.getElementById('totalCount');
+
+    let filtroEvento = 'all';
+    let filtroMidia = 'todas-midias';
+
+    function getIcon(icone) { return icone || 'fa-file'; }
+
+    function getTagEventoClass(ev) {
+      if (ev === 'casamento') return 'tag-casamento';
+      if (ev === 'debutante') return 'tag-debutante';
+      if (ev === 'infantil')  return 'tag-infantil';
+      if (ev === 'gestante')  return 'tag-gestante';
+      if (ev === 'institucional') return 'tag-institucional';
+      if (ev === 'estudio')   return 'tag-estudio';
+      return '';
+    }
+    function getTagEventoLabel(ev) {
+      const map = {
+        casamento: 'Casamento',
+        debutante: '15 Anos',
+        infantil: 'Infantil',
+        gestante: 'Gestante',
+        institucional: 'Institucional',
+        estudio: 'Estúdio'
+      };
+      return map[ev] || ev;
+    }
+    function getTagMidiaClass(m) { return m === 'fotografia' ? 'tag-fotografia' : 'tag-filmagem'; }
+    function getTagMidiaLabel(m) { return m === 'fotografia' ? 'Fotografia' : 'Filmagem'; }
+
+    function renderizar() {
+      let filtradas = PAGINAS;
+
+      // Filtro por evento
+      if (filtroEvento !== 'all') {
+        filtradas = filtradas.filter(p => p.evento === filtroEvento);
+      }
+
+      // Filtro por mídia
+      if (filtroMidia !== 'todas-midias') {
+        filtradas = filtradas.filter(p => p.midia === filtroMidia);
+      }
+
+      totalSpan.textContent = PAGINAS.length;
+
+      if (filtradas.length === 0) {
+        grid.innerHTML = `<div class="empty-state"><i class="fas fa-folder-open"></i><p>Nenhuma página encontrada com esses filtros.</p></div>`;
+        return;
+      }
+
+      grid.innerHTML = filtradas.map(p => {
+        const linkHref = p.arquivo;
+        return `
+          <div class="card-item" data-id="${p.id}">
+            <div class="card-left">
+              <div class="card-icon"><i class="fas ${getIcon(p.icone)}"></i></div>
+              <div class="card-info">
+                <div class="card-name">${p.nome}</div>
+                <div class="card-desc">${p.descricao}</div>
+                <div class="card-meta">
+                  <span class="tag ${getTagEventoClass(p.evento)}">${getTagEventoLabel(p.evento)}</span>
+                  <span class="tag ${getTagMidiaClass(p.midia)}">${getTagMidiaLabel(p.midia)}</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-right">
+              <button class="btn-copy" data-link="${linkHref}" onclick="copiarLink(this)"><i class="fas fa-link"></i> Copiar Link</button>
+              <a href="${linkHref}" target="_blank" class="btn-open" title="Abrir página"><i class="fas fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    /* ── COPIAR LINK ── */
+    function copiarLink(botao) {
+	  const link = botao.getAttribute('data-link');
+	  const paginaAtual = window.location.href;
+	  const baseUrl = paginaAtual.substring(0, paginaAtual.lastIndexOf('/') + 1);
+	  const urlCompleta = baseUrl + link;
+
+	  if (navigator.clipboard && navigator.clipboard.writeText) {
+		navigator.clipboard.writeText(urlCompleta).then(() => {
+		  mostrarToast(`Link copiado: ${link}`);
+		  feedbackCopiado(botao);
+		}).catch(() => fallbackCopiar(urlCompleta, botao));
+	  } else {
+		fallbackCopiar(urlCompleta, botao);
+	  }
+	}
+
+    function fallbackCopiar(texto, botao) {
+      const inp = document.createElement('input');
+      inp.value = texto;
+      document.body.appendChild(inp);
+      inp.select();
+      try {
+        document.execCommand('copy');
+        mostrarToast('Link copiado!');
+        feedbackCopiado(botao);
+      } catch { mostrarToast('Erro ao copiar. Copie manualmente.'); }
+      document.body.removeChild(inp);
+    }
+
+    function feedbackCopiado(botao) {
+      botao.classList.add('copied');
+      const origText = botao.innerHTML;
+      botao.innerHTML = '<i class="fas fa-check"></i> Copiado';
+      setTimeout(() => { botao.classList.remove('copied'); botao.innerHTML = origText; }, 2000);
+    }
+
+    /* ── TOAST ── */
+    let toastTimeout = null;
+    function mostrarToast(msg) {
+      const t = document.getElementById('toast');
+      const m = document.getElementById('toastMsg');
+      m.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    /* ── EVENTOS DOS FILTROS ── */
+    // Filtros de evento
+    document.querySelectorAll('#eventFilterBar .filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#eventFilterBar .filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filtroEvento = btn.dataset.filter;
+        renderizar();
+      });
+    });
+
+    // Filtros de mídia
+    document.querySelectorAll('#mediaFilterBar .subfilter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#mediaFilterBar .subfilter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filtroMidia = btn.dataset.filter;
+        renderizar();
+      });
+    });
+
+    /* ── INIT ── */
+    document.addEventListener('DOMContentLoaded', () => renderizar());
+  </script>
+</body>
+</html>

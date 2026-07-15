@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prado Foto — Fotografia de Casamentos</title>
+  <meta name="description" content="Fotografia de casamentos artesanal e cheia de carinho. Prado Foto eterniza as emoções do seu grande dia." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/tema-foto.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#hero" class="logo">PRADO<span>.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Início</a></li>
+        <li><a href="#gallery">Galeria</a></li>
+        <li><a href="#avulsos">Avulsos</a></li>
+        <li><a href="#combos">Combos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content fade-in">
+      <h1>SUA HISTÓRIA EM FOTOS</h1>
+      <p>Reviva as emoções intensas, os sorrisos cúmplices e as lágrimas de alegria — tudo cuidadosamente eternizado em imagens.</p>
+    </div>
+    <div class="carousel-indicators" id="carouselIndicators"></div>
+  </section>
+
+<section id="gallery">
+  <div class="container">
+    <h2 class="section-title fade-in">NOSSOS REGISTROS</h2>
+    <p class="section-subtitle fade-in">MEMÓRIAS QUE DURAM PARA SEMPRE</p>
+
+    <!-- ── FILTRO DE EVENTOS ── -->
+    <div id="eventFilter" class="event-filter-bar fade-in"></div>
+
+    <!-- ── CONTADOR ── -->
+    <div class="gallery-info fade-in">
+      <span id="galleryCounter" class="gallery-counter"></span>
+    </div>
+
+    <!-- ── GRID ── -->
+    <div class="gallery-grid-4col" id="galleryGrid"></div>
+
+    <!-- ── BOTÃO CARREGAR MAIS ── -->
+    <button id="loadMoreBtn" class="load-more-btn" style="display:none;">
+      <i class="fas fa-plus"></i> <span>Carregar mais fotos</span>
+    </button>
+  </div>
+</section>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Fechar"><i class="fas fa-times"></i></button>
+    <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+    <img class="lightbox-img" id="lightboxImage" src="" alt="Foto em zoom" />
+    <button class="lightbox-nav next" id="lightboxNext" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+
+  <section id="avulsos">
+    <div class="container">
+      <h2 class="section-title fade-in">SERVIÇOS AVULSOS</h2>
+      <p class="section-subtitle fade-in">MONTE DO SEU JEITO</p>
+      <p class="section-text fade-in">Cada serviço pode ser contratado separadamente. Escolha o que faz sentido para o seu grande dia.</p>
+      <div class="services-intro fade-in">
+        <div class="topic">
+          <span class="topic-label">🎯 Quebra-gelo</span>
+          <p>O Pré-Wedding é um ensaio descontraído antes do casamento. Vocês se soltam na frente da câmera, e eu conheço o estilo, os gestos e o que faz vocês rirem de verdade.</p>
+        </div>
+        <div class="topic">
+          <span class="topic-label">✨ Personalizado</span>
+          <p>A história de vocês define o cenário — não o contrário. Escolhemos juntos o local, o horário e o tema que combinam com a personalidade do casal, criando fotos únicas que refletem quem vocês são.</p>
+        </div>
+      </div>
+      <div class="services-list fade-in">
+        <div class="service-item"><span class="service-name">Pré-Wedding</span><span class="service-dots"></span><span class="service-price">R$ 500,00</span></div>
+        <div class="service-item"><span class="service-name">Making Of Noivo</span><span class="service-dots"></span><span class="service-price">R$ 450,00</span></div>
+        <div class="service-item"><span class="service-name">Making Of Noiva</span><span class="service-dots"></span><span class="service-price">R$ 450,00</span></div>
+        <div class="service-item"><span class="service-name">Cobertura da Cerimônia</span><span class="service-dots"></span><span class="service-price">R$ 1.600,00</span></div>
+        <div class="service-item"><span class="service-name">Cobertura da Recepção</span><span class="service-dots"></span><span class="service-price">R$ 1.600,00</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="combos">
+    <div class="container">
+      <h2 class="section-title fade-in">NOSSOS COMBOS</h2>
+      <p class="section-subtitle fade-in">OPÇÕES COMPLETAS PARA O SEU DIA</p>
+      <p class="section-text fade-in">Combos pensados para oferecer o melhor custo-benefício na fotografia do seu casamento.</p>
+      <div class="combos-grid">
+        <div class="combo-card fade-in">
+          <div class="combo-badge">★ ACESSÍVEL</div>
+          <h3 class="combo-name">Essencial</h3>
+          <div class="combo-price"><span class="currency">R$</span><span class="amount">1.750,00</span></div>
+          <div class="combo-meta">1 fotógrafo · Até 6h de evento</div>
+          <p class="combo-section-label">Inclui</p>
+          <ul class="combo-list">
+            <li><i class="fas fa-check"></i> Cobertura da Cerimônia</li>
+            <li><i class="fas fa-check"></i> Cobertura da Recepção</li>
+          </ul>
+          <p class="combo-section-label" style="margin-top:12px;color:var(--text-muted);">Indicado para</p>
+          <ul class="combo-list">
+            <li><i class="fas fa-chevron-right" style="font-size:0.6rem;"></i> Mini Wedding — casamentos menores, com poucos convidados</li>
+          </ul>
+          <a href="https://wa.me/5518981832328?text=Ol%C3%A1!%20Gostei%20do%20pacote%20Essencial%20de%20fotografia.%20Podemos%20conversar%3F" class="combo-btn" target="_blank">SOLICITAR ORÇAMENTO</a>
+        </div>
+        <div class="combo-card fade-in">
+          <div class="combo-badge">★ MAIS VENDIDO</div>
+          <h3 class="combo-name">Completo</h3>
+          <div class="combo-price"><span class="currency">R$</span><span class="amount">2.350,00</span></div>
+          <div class="combo-meta">2 fotógrafos · Até 8h de evento<br><span style="font-size:0.78rem;">(pode ser estendido)</span></div>
+          <p class="combo-section-label">Inclui</p>
+          <ul class="combo-list">
+            <li><i class="fas fa-check"></i> Cobertura da Cerimônia</li>
+            <li><i class="fas fa-check"></i> Cobertura da Recepção</li>
+          </ul>
+          <p class="combo-section-label" style="margin-top:12px;color:var(--text-muted);">Indicado para</p>
+          <ul class="combo-list">
+            <li><i class="fas fa-chevron-right" style="font-size:0.6rem;"></i> Casamentos maiores, com mais convidados e mais momentos importantes</li>
+          </ul>
+          <a href="https://wa.me/5518981832328?text=Ol%C3%A1!%20Gostei%20do%20pacote%20Completo%20de%20fotografia.%20Podemos%20conversar%3F" class="combo-btn combo-btn-gold" target="_blank">SOLICITAR ORÇAMENTO</a>
+        </div>
+        <div class="combo-card fade-in">
+          <div class="combo-badge">★ COMPLETO</div>
+          <h3 class="combo-name">Especial</h3>
+          <div class="combo-price"><span class="currency">R$</span><span class="amount">2.650,00</span></div>
+          <div class="combo-meta">2 fotógrafos · Cobertura completa do dia</div>
+          <p class="combo-section-label">Inclui</p>
+          <ul class="combo-list">
+            <li><i class="fas fa-check"></i> Making-Of dos Noivos</li>
+            <li><i class="fas fa-check"></i> Cobertura da Cerimônia</li>
+            <li><i class="fas fa-check"></i> Cobertura da Recepção</li>
+          </ul>
+          <a href="https://wa.me/5518981832328?text=Ol%C3%A1!%20Gostei%20do%20pacote%20Especial%20de%20fotografia.%20Podemos%20conversar%3F" class="combo-btn" target="_blank">SOLICITAR ORÇAMENTO</a>
+        </div>
+        <div class="combo-card fade-in">
+          <div class="combo-badge">★ COMPLETÃO</div>
+          <h3 class="combo-name">Premium</h3>
+          <div class="combo-price"><span class="currency">R$</span><span class="amount">2.850,00</span></div>
+          <div class="combo-meta">Pré-wedding: 1 fotógrafo · Dia: 2 fotógrafos</div>
+          <p class="combo-section-label">Inclui</p>
+          <ul class="combo-list">
+            <li><i class="fas fa-check"></i> Ensaio Pré-Wedding</li>
+            <li><i class="fas fa-check"></i> Making-Of dos Noivos</li>
+            <li><i class="fas fa-check"></i> Cobertura da Cerimônia</li>
+            <li><i class="fas fa-check"></i> Cobertura da Recepção</li>
+          </ul>
+          <a href="https://wa.me/5518981832328?text=Ol%C3%A1!%20Gostei%20do%20pacote%20Premium%20de%20fotografia.%20Podemos%20conversar%3F" class="combo-btn" target="_blank">SOLICITAR ORÇAMENTO</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="albuns">
+    <div class="container">
+      <h2 class="section-title fade-in">ÁLBUNS FOTOGRÁFICOS</h2>
+      <p class="section-subtitle fade-in">GUARDE AS MEMÓRIAS EM PAPEL</p>
+      <p class="section-text fade-in">Álbuns premium com acabamento impecável para eternizar as melhores fotos do seu casamento.</p>
+      <div class="albums-grid fade-in">
+        <div class="album-card">
+          <div class="album-icon"><i class="fas fa-book"></i></div>
+          <h3 class="album-name">Álbum 20×25</h3>
+          <p class="album-detail">30 páginas · Capa dura</p>
+          <p class="album-specs">Papel premium · Acabamento fosco</p>
+          <div class="album-price">R$ 1.020,00</div>
+        </div>
+        <div class="album-card">
+          <div class="album-icon"><i class="fas fa-book-open"></i></div>
+          <h3 class="album-name">Álbum 30×30</h3>
+          <p class="album-detail">30 páginas · Capa dura</p>
+          <p class="album-specs">Papel premium · Acabamento fosco</p>
+          <div class="album-price">R$ 1.340,00</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="info">
+    <div class="container">
+      <h2 class="section-title fade-in">INFORMAÇÕES IMPORTANTES</h2>
+      <p class="section-subtitle fade-in">ANTES DE CONTRATAR</p>
+      <div class="info-grid">
+        <div class="info-item fade-in"><div class="info-icon"><i class="fas fa-car"></i></div><p class="info-text">Deslocamento superior a 100km ou local de difícil acesso: <strong>CONSULTAR</strong></p></div>
+        <div class="info-item fade-in"><div class="info-icon"><i class="fas fa-lock"></i></div><p class="info-text">Entrada de 20% para reserva da data</p></div>
+        <div class="info-item fade-in"><div class="info-icon"><i class="fas fa-mobile-screen"></i></div><p class="info-text">Parcelamento no boleto até a data do casamento</p></div>
+        <div class="info-item fade-in"><div class="info-icon"><i class="fas fa-calendar-check"></i></div><p class="info-text">Validade deste orçamento: <strong>Fevereiro/2026</strong></p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contato">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo fade-in">PRADO<span>.</span></div>
+        <div class="footer-social fade-in">
+          <a href="https://instagram.com/pradofotoevideo" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> @pradofotoevideo</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 Prado Foto e Vídeo — Fotografia de Casamentos. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5518981832328" target="_blank" class="whatsapp-float" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/pagina-foto.js"></script>
+</body>
+</html>

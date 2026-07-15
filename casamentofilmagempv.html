@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prado Foto e Vídeo — Filmagem de Casamentos</title>
+  <meta name="description" content="Filmagem de casamentos artesanal e cheia de carinho. Prado Foto e Vídeo eterniza as emoções do seu grande dia." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/tema-filme.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#hero" class="logo">PRADO<span>.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Início</a></li>
+        <li><a href="#trabalho">Serviços</a></li>
+        <li><a href="#pacotes">Pacotes</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content fade-in">
+      <h1>SEU FILME DE CASAMENTO</h1>
+      <p>Reviva as emoções intensas, os sorrisos cúmplices e as lágrimas de alegria — tudo cuidadosamente imortalizado para vocês.</p>
+    </div>
+    <div class="carousel-indicators" id="carouselIndicators"></div>
+  </section>
+
+  <section id="trabalho">
+    <div class="container">
+      <h2 class="section-title fade-in">NOSSO TRABALHO</h2>
+      <p class="section-subtitle fade-in">ARTESANAL E CHEIO DE CARINHO</p>
+      <p class="section-text fade-in">Sua história é única, não se repete, e pode ser contada de maneiras diferentes.</p>
+      <div class="carousel-wrapper fade-in">
+        <button class="carousel-arrow prev" id="prevBtn" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-track-container">
+          <div class="carousel-track" id="carouselTrack"></div>
+        </div>
+        <button class="carousel-arrow next" id="nextBtn" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
+      <div class="center-btn fade-in">
+        <a href="https://www.youtube.com/@pradofotoevideo5164" target="_blank" rel="noopener" class="btn">VEJA MAIS NO NOSSO CANAL</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <div class="container">
+      <h2 class="section-title fade-in">PERSONALIZE SEU PACOTE</h2>
+      <p class="section-subtitle fade-in">MONTE DO SEU JEITO</p>
+      <p class="section-text fade-in">Escolha os serviços que fazem sentido para o seu grande dia. Cada item pode ser contratado separadamente.</p>
+      <div class="services-list fade-in">
+        <div class="service-item"><span class="service-name">Pré-Wedding</span><span class="service-dots"></span><span class="service-price">R$ 500,00</span></div>
+        <div class="service-item"><span class="service-name">Making Of Noivo</span><span class="service-dots"></span><span class="service-price">R$ 350,00</span></div>
+        <div class="service-item"><span class="service-name">Making Of Noiva</span><span class="service-dots"></span><span class="service-price">R$ 350,00</span></div>
+        <div class="service-item"><span class="service-name">Cobertura da Cerimônia</span><span class="service-dots"></span><span class="service-price">R$ 1.750,00</span></div>
+        <div class="service-item"><span class="service-name">Cobertura da Festa/Recepção</span><span class="service-dots"></span><span class="service-price">R$ 1.750,00</span></div>
+        <div class="service-item"><span class="service-name">Drone</span><span class="service-dots"></span><span class="service-price">R$ 300,00</span></div>
+        <div class="service-item"><span class="service-name">Pendrive + Caixa Personalizada</span><span class="service-dots"></span><span class="service-price">R$ 300,00</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pacotes">
+    <div class="container">
+      <h2 class="section-title fade-in">NOSSOS PACOTES</h2>
+      <p class="section-subtitle fade-in">OPÇÕES COMPLETAS PARA O SEU DIA</p>
+      <p class="section-text fade-in">Pacotes pensados para oferecer o melhor custo-benefício, combinando os serviços mais procurados.</p>
+      <div class="packages-grid">
+        <div class="package-card fade-in">
+          <div class="package-badge">★ MAIS VENDIDO</div>
+          <h3 class="package-name">Essencial</h3>
+          <div class="package-price"><span class="currency">R$</span><span class="amount">2.500,00</span></div>
+          <div class="package-section-header"><i class="fas fa-camera"></i><span class="package-section-label">Cobertura (o que filmamos)</span></div>
+          <ul class="package-list">
+            <li><i class="fas fa-check"></i> Pré-Wedding</li>
+            <li><i class="fas fa-check"></i> Making Of da Noiva <span style="color:var(--gold);font-size:0.78rem;">(brinde)</span></li>
+            <li><i class="fas fa-check"></i> Cerimônia — 2 cinegrafistas</li>
+            <li><i class="fas fa-check"></i> Recepção — 2 cinegrafistas</li>
+          </ul>
+          <div class="package-divider"></div>
+          <div class="package-section-header"><i class="fas fa-film"></i><span class="package-section-label">Entregas (o que você leva)</span></div>
+          <ul class="package-list">
+            <li><i class="fas fa-check"></i> Filme Pre-Wedding (até 5 min)</li>
+            <li><i class="fas fa-check"></i> Vídeo completo da Cerimônia e Recepção</li>
+            <li><i class="fas fa-check"></i> Teaser "Melhores Momentos" (até 5 min)</li>
+          </ul>
+          <div class="package-divider"></div>
+          <div class="package-section-header"><i class="fas fa-times" style="color:var(--text-muted);"></i><span class="package-section-label" style="color:var(--text-muted);">Não inclui</span></div>
+          <ul class="package-list excluded">
+            <li><i class="fas fa-minus"></i> Making Of Noivo</li>
+            <li><i class="fas fa-minus"></i> Sameday</li>
+            <li><i class="fas fa-minus"></i> Filme curto (10–15 min)</li>
+            <li><i class="fas fa-minus"></i> Caixa personalizada + Pendrive</li>
+          </ul>
+          <a href="https://wa.me/5518981832328?text=Ol%C3%A1!%20Gostei%20do%20pacote%20Essencial%20de%20filmagem.%20Podemos%20conversar%3F" class="btn package-btn">SOLICITAR ORÇAMENTO</a>
+        </div>
+        <div class="package-card fade-in">
+          <div class="package-badge">★ MELHOR CUSTO-BENEFÍCIO</div>
+          <h3 class="package-name">Ouro</h3>
+          <div class="package-price"><span class="currency">R$</span><span class="amount">3.500,00</span></div>
+          <div class="package-section-header"><i class="fas fa-camera"></i><span class="package-section-label">Cobertura (o que filmamos)</span></div>
+          <ul class="package-list">
+            <li><i class="fas fa-check"></i> Pré-Wedding</li>
+            <li><i class="fas fa-check"></i> Making Of Noivo e Noiva</li>
+            <li><i class="fas fa-check"></i> Decoração</li>
+            <li><i class="fas fa-check"></i> Cerimônia — 2 cinegrafistas</li>
+            <li><i class="fas fa-check"></i> Recepção — 2 cinegrafistas</li>
+          </ul>
+          <div class="package-divider"></div>
+          <div class="package-section-header"><i class="fas fa-film"></i><span class="package-section-label">Entregas (o que você leva)</span></div>
+          <ul class="package-list">
+            <li><i class="fas fa-check"></i> Filme Pre-Wedding (até 5 min)</li>
+            <li><i class="fas fa-check"></i> Filme Making-of (até 3 min)</li>
+            <li><i class="fas fa-check"></i> Sameday</li>
+            <li><i class="fas fa-check"></i> Filme curto (10–15 min)</li>
+            <li><i class="fas fa-check"></i> Vídeo completo da Cerimônia e Recepção</li>
+            <li><i class="fas fa-check"></i> Caixa personalizada + Pendrive</li>
+          </ul>
+          <a href="https://wa.me/5518981832328?text=Ol%C3%A1!%20Gostei%20do%20pacote%20Ouro%20de%20filmagem.%20Podemos%20conversar%3F" class="btn btn-gold package-btn">SOLICITAR ORÇAMENTO</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="info">
+    <div class="container">
+      <h2 class="section-title fade-in">INFORMAÇÕES IMPORTANTES</h2>
+      <p class="section-subtitle fade-in">ANTES DE CONTRATAR</p>
+      <div class="info-grid">
+        <div class="info-item fade-in"><div class="info-icon"><i class="fas fa-car"></i></div><p class="info-text">Deslocamento superior a 100km: <strong style="color:var(--gold);">CONSULTAR</strong></p></div>
+        <div class="info-item fade-in"><div class="info-icon"><i class="fas fa-lock"></i></div><p class="info-text">Entrada de 20% para reserva da data</p></div>
+        <div class="info-item fade-in"><div class="info-icon"><i class="fas fa-mobile-screen"></i></div><p class="info-text">Entrega online em até 150 dias</p></div>
+        <div class="info-item fade-in"><div class="info-icon"><i class="fas fa-calendar-check"></i></div><p class="info-text">Parcelamento até a data do evento</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contato">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo fade-in">PRADO<span>.</span></div>
+        <div class="footer-social fade-in">
+          <a href="https://instagram.com/pradofotoevideo" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> @pradofotoevideo</a>
+          <a href="https://www.youtube.com/@pradofotoevideo5164" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> /@pradofotoevideo</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 Prado Foto e Vídeo — Filmagem de Casamentos. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/pagina-filme.js"></script>
+</body>
+</html>
