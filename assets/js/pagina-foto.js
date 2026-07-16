@@ -2,47 +2,6 @@
    PÁGINA DE FOTOGRAFIA — Hero + Galeria + Paginação + Lightbox
     */
 
-/* ── HERO SLIDESHOW (autossuficiente) ── */
-let heroInterval = null;
-let slideIndex = 0;
-
-function initHeroCarousel(slides) {
-  const bg = document.getElementById('heroBg');
-  const indicators = document.getElementById('carouselIndicators');
-  if (!bg || !slides || slides.length === 0) return;
-
-  if (heroInterval) clearInterval(heroInterval);
-
-  bg.style.backgroundImage = `url('${slides[0]}')`;
-  bg.classList.add('active');
-
-  if (indicators) {
-    indicators.innerHTML = slides.map((_, i) =>
-      `<span class="indicator${i === 0 ? ' active' : ''}" data-index="${i}"></span>`
-    ).join('');
-    indicators.addEventListener('click', (e) => {
-      const idx = e.target.dataset.index;
-      if (idx !== undefined) mudarSlide(parseInt(idx), slides);
-    });
-  }
-
-  heroInterval = setInterval(() => {
-    slideIndex = (slideIndex + 1) % slides.length;
-    mudarSlide(slideIndex, slides);
-  }, 4000);
-}
-
-function mudarSlide(index, slides) {
-  const bg = document.getElementById('heroBg');
-  const dots = document.querySelectorAll('#carouselIndicators .indicator');
-  if (!bg) return;
-
-  bg.style.backgroundImage = `url('${slides[index]}')`;
-  slideIndex = index;
-
-  dots.forEach((d, i) => d.classList.toggle('active', i === index));
-}
-
 /* ── MENU MOBILE ── */
 function initMobileMenu() {
   const hamburger = document.getElementById('hamburger');
@@ -118,12 +77,6 @@ let lightboxCurrentIndex = 0;
 
 /* ── INICIALIZAR ── */
 document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    if (PRADO?.foto?.heroSlides) {
-      initHeroCarousel(PRADO.foto.heroSlides);
-    }
-  }, 100);
-
   initMobileMenu();
   initSmoothScroll();
 
@@ -209,10 +162,8 @@ async function renderizarGaleria() {
   const lote = todasAsFotosEvento.slice(0, FOTOS_POR_PAGINA + fotosCarregadas);
   fotosCarregadas = lote.length;
 
-  // PRÉ-CARREGA as proporções reais ANTES de montar o HTML
   const proporcoes = await preCarregarProporcoes(lote);
 
-  // Monta o HTML com spans inteligentes baseados na proporção real
   let html = '';
   let colAtual = 0;
   const colunas = 4;
@@ -221,7 +172,6 @@ async function renderizarGaleria() {
     const { url: foto, ratio } = proporcoes[i];
     const idx = i;
 
-    // Reseta a contagem de colunas no início de cada linha
     if (colAtual >= colunas) colAtual = 0;
 
     const isVertical = ratio < 0.85;
@@ -231,15 +181,12 @@ async function renderizarGaleria() {
     let spanCols = 1;
 
     if (isVertical) {
-      // Foto vertical: ocupa 1 coluna, 2 linhas
       spanClass = 'grid-vertical';
       spanCols = 1;
     } else if (isHorizontal && colAtual <= 2) {
-      // Foto horizontal + cabe no grid: ocupa 2 colunas
       spanClass = 'grid-horizontal';
       spanCols = 2;
     } else {
-      // Padrão: 1 coluna
       spanClass = '';
       spanCols = 1;
     }
@@ -255,7 +202,6 @@ async function renderizarGaleria() {
 
   grid.innerHTML = html;
 
-  // Carregar mais
   const restantes = fotos.length - fotosCarregadas;
   if (loadMoreBtn) {
     loadMoreBtn.style.display = restantes > 0 ? 'inline-flex' : 'none';
@@ -267,7 +213,6 @@ async function renderizarGaleria() {
     }
   }
 
-  // Contador
   const counter = document.getElementById('galleryCounter');
   if (counter) {
     const nomeExibicao = eventoAtual === 'todos'
