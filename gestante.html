@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prado Foto — Ensaios Gestante</title>
+<meta name="description" content="Ensaio fotográfico gestante em Presidente Venceslau. Eternize cada detalhe dessa espera com fotos cheias de amor e emoção." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+<link rel="stylesheet" href="assets/css/base.css" />
+<link rel="stylesheet" href="assets/css/tema-foto.css" />
+<link rel="stylesheet" href="assets/css/tema-gestante.css" />
+
+<style>
+/* ═══════════════════════════════════════
+   TEMA GESTANTE — Blush & Rose Gold
+   ═══════════════════════════════════════ */
+:root {
+  --bg-primary: #fcf9f7;
+  --bg-secondary: #f5eae8;
+  --bg-card: #ffffff;
+  --text-dark: #5c4a4d;
+  --text-body: #8a7a7d;
+  --text-muted: #b5a5a8;
+  --gold: #d4a5a5;
+  --gold-dark: #c99789;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+<nav>
+<a href="#hero" class="logo">PRADO<span>.</span></a>
+<ul class="nav-links" id="navLinks">
+<li><a href="#hero">Início</a></li>
+<li><a href="#gallery">Galeria</a></li>
+<li><a href="#avulsos">Serviços</a></li>
+<li><a href="#combos">Pacotes</a></li>
+<li><a href="#faq">Dúvidas</a></li>
+<li><a href="#contato">Contato</a></li>
+</ul>
+<button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+</header>
+
+<!-- ═══════════════════════════════════════
+     HERO SLIDESHOW
+     ═══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-bg" id="heroBgNext"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content fade-in">
+    <h1>NOSSO PRESENTE EM FOTOS</h1>
+    <p>Eternize cada detalhe dessa espera tão especial. A chegada de um bebê merece registros únicos, cheios de amor, luz e emoção.</p>
+  </div>
+  <div class="carousel-indicators" id="carouselIndicators"></div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     GALERIA
+     ═══════════════════════════════════════ -->
+<section id="gallery">
+  <div class="container">
+    <h2 class="section-title fade-in">NOSSOS REGISTROS</h2>
+    <p class="section-subtitle fade-in">MOMENTOS QUE AQUECEM O CORAÇÃO</p>
+
+    <div id="eventFilter" class="event-filter-bar fade-in"></div>
+
+    <div class="gallery-info fade-in">
+      <span id="galleryCounter" class="gallery-counter"></span>
+    </div>
+
+    <div class="gallery-grid-4col" id="galleryGrid"></div>
+
+    <button id="loadMoreBtn" class="load-more-btn" style="display:none;">
+      <i class="fas fa-plus"></i> <span>Carregar mais fotos</span>
+    </button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     LIGHTBOX
+     ═══════════════════════════════════════ -->
+<div class="lightbox" id="lightbox">
+<button class="lightbox-close" id="lightboxClose" aria-label="Fechar"><i class="fas fa-times"></i></button>
+<button class="lightbox-nav prev" id="lightboxPrev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+<img class="lightbox-img" id="lightboxImage" src="" alt="Foto em zoom" />
+<button class="lightbox-nav next" id="lightboxNext" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
+<div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SERVIÇOS AVULSOS
+     ═══════════════════════════════════════ -->
+<section id="avulsos">
+<div class="container">
+<h2 class="section-title fade-in">SERVIÇOS AVULSOS</h2>
+<p class="section-subtitle fade-in">MONTE DO SEU JEITO</p>
+<p class="section-text fade-in">Cada serviço pode ser contratado separadamente. Monte o ensaio do seu jeito, do seu bolso e do seu coração.</p>
+<div class="services-intro fade-in">
+<div class="topic">
+<span class="topic-label">🌸 Acolhimento</span>
+<p>Sabemos que cada gestação é única. Desde o primeiro contato até a entrega das fotos, você será acompanhada com cuidado, paciência e carinho — respeitando seu tempo, seu corpo e suas vontades.</p>
+</div>
+<div class="topic">
+<span class="topic-label">✨ Personalizado</span>
+<p>O cenário, as roupas, a luz e o clima são pensados para refletir quem você é. Seja no estúdio ou ao ar livre, cada detalhe é escolhido para fazer você se sentir linda, confiante e emocionada.</p>
+</div>
+</div>
+<div class="services-list fade-in">
+<div class="service-item"><span class="service-name">Ensaio Estúdio — 10 fotos</span><span class="service-dots"></span><span class="service-price">R$ 280,00</span></div>
+<div class="service-item"><span class="service-name">Ensaio Estúdio — 15 fotos</span><span class="service-dots"></span><span class="service-price">R$ 390,00</span></div>
+<div class="service-item"><span class="service-name">Foto Adicional</span><span class="service-dots"></span><span class="service-price">R$ 18,00</span></div>
+<div class="service-item"><span class="service-name">Combo 5 Fotos Adicionais</span><span class="service-dots"></span><span class="service-price">R$ 70,00</span></div>
+<div class="service-item"><span class="service-name">Combo 10 Fotos Adicionais</span><span class="service-dots"></span><span class="service-price">R$ 120,00</span></div>
+</div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PACOTES
+     ═══════════════════════════════════════ -->
+<section id="combos">
+<div class="container">
+<h2 class="section-title fade-in">NOSSOS PACOTES</h2>
+<p class="section-subtitle fade-in">OPÇÕES COMPLETAS PARA O SEU ENSAIO</p>
+<p class="section-text fade-in">Pacotes pensados para oferecer o melhor custo-benefício no ensaio gestante, com atendimento personalizado em cada etapa.</p>
+<div class="combos-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 960px; margin: 0 auto;">
+
+<div class="combo-card fade-in">
+<div class="combo-badge">🌸 ESTÚDIO</div>
+<h3 class="combo-name">Essencial</h3>
+<div class="combo-price"><span class="currency">R$</span><span class="amount">280,00</span></div>
+<div class="combo-meta">1h de ensaio · 1 troca de roupa</div>
+<p class="combo-section-label">Inclui</p>
+<ul class="combo-list">
+<li><i class="fas fa-check"></i> 10 fotos digitais com tratamento profissional</li>
+<li><i class="fas fa-check"></i> Orientações de estilo para o ensaio</li>
+<li><i class="fas fa-check"></i> Galeria para escolha das fotos</li>
+</ul>
+<a href="https://wa.me/5518981832328?text=Ol%C3%A1!%20Gostei%20do%20pacote%20Essencial%20de%20ensaio%20gestante.%20Podemos%20conversar%3F" class="combo-btn" target="_blank">QUERO ESTE PACOTE</a>
+</div>
+
+<div class="combo-card fade-in">
+<div class="combo-badge">★ MAIS ESCOLHIDO</div>
+<h3 class="combo-name">Completo</h3>
+<div class="combo-price"><span class="currency">R$</span><span class="amount">390,00</span></div>
+<div class="combo-meta">1h30 de ensaio · Até 2 trocas de roupa</div>
+<p class="combo-section-label">Inclui</p>
+<ul class="combo-list">
+<li><i class="fas fa-check"></i> 20 fotos digitais com tratamento profissional</li>
+<li><i class="fas fa-check"></i> Orientações de estilo para o ensaio</li>
+<li><i class="fas fa-check"></i> Galeria para escolha das fotos</li>
+<li><i class="fas fa-check"></i> Participação do acompanhante</li>
+</ul>
+<a href="https://wa.me/5518981832328?text=Ol%C3%A1!%20Gostei%20do%20pacote%20Completo%20de%20ensaio%20gestante.%20Podemos%20conversar%3F" class="combo-btn combo-btn-gold" target="_blank">QUERO ESTE PACOTE</a>
+</div>
+
+<div class="combo-card fade-in">
+<div class="combo-badge">🏞️ EXTERNO</div>
+<h3 class="combo-name">Premium</h3>
+<div class="combo-price"><span class="currency">R$</span><span class="amount">450,00</span></div>
+<div class="combo-meta">Ensaio ao ar livre · Até 3 trocas de roupa</div>
+<p class="combo-section-label">Inclui</p>
+<ul class="combo-list">
+<li><i class="fas fa-check"></i> 200 a 400 fotos digitais com edição de cor e luz</li>
+<li><i class="fas fa-check"></i> Orientações de estilo para o ensaio</li>
+<li><i class="fas fa-check"></i> Participação da família</li>
+<li><i class="fas fa-check"></i> Entrega via link exclusivo</li>
+</ul>
+<p class="combo-section-label" style="margin-top:12px;color:var(--text-muted);">Disponível em</p>
+<ul class="combo-list">
+<li><i class="fas fa-chevron-right" style="font-size:0.6rem;"></i> Presidente Venceslau e região</li>
+<li><i class="fas fa-chevron-right" style="font-size:0.6rem;"></i> Outras cidades: consultar taxa de deslocamento</li>
+</ul>
+<a href="https://wa.me/5518981832328?text=Ol%C3%A1!%20Gostei%20do%20pacote%20Premium%20externo%20de%20ensaio%20gestante.%20Podemos%20conversar%3F" class="combo-btn" target="_blank">QUERO ESTE PACOTE</a>
+</div>
+
+</div>
+
+<div style="max-width: 400px; margin: 30px auto 0; text-align: center;">
+  <div class="combo-card fade-in" style="padding: 20px 24px;">
+    <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:10px;line-height:1.5;">
+      💡 Após a sessão, você recebe uma galeria para selecionar suas fotos favoritas de acordo com o pacote contratado. As escolhidas passam por tratamento profissional e são entregues via link exclusivo para download.
+    </p>
+    <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.5;">
+      📸 <strong>Fotos adicionais:</strong> 1 foto R$ 18,00 · Combo 5 fotos R$ 70,00 · Combo 10 fotos R$ 120,00<br>
+      💰 Pagamento em dinheiro ou PIX. Cartão: acrescido da taxa da maquininha.
+    </p>
+  </div>
+</div>
+
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FAQ — DÚVIDAS FREQUENTES
+     ═══════════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+	<h2 class="section-title fade-in">DÚVIDAS FREQUENTES</h2>
+	<p class="section-subtitle fade-in">TUDO QUE VOCÊ QUER SABER</p>
+
+	<p class="section-text fade-in" style="margin-bottom: 40px; max-width: 600px;">
+	  Selecionamos as perguntas mais comuns que as mamães têm na hora de contratar o ensaio gestante.
+	</p>
+
+    <div class="faq-grid">
+      <div class="faq-item fade-in">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Com quantas semanas devo fazer o ensaio?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>O ideal é entre <strong>28 e 35 semanas</strong> (7º ao 8º mês). A barriga já está bonita e você ainda se sente disposta para as fotos. Mas cada gestação é única — conversamos para achar a melhor data para você. O importante é agendar com antecedência a partir de 20 semanas para garantir o horário.</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-in">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>O que vestir no ensaio?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Vestidos longos, bodies, looks casuais, jeans com top, lingerie sofisticada — o que fizer você se sentir linda! Na hora de escolher, vou te orientar sobre quais cores e tecidos funcionam melhor na luz e no cenário do ensaio. Prefira cores claras, tons neutros e evite estampas muito carregadas. Disponibilizamos algumas peças no estúdio também.</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-in">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Preciso saber posar para as fotos?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>De jeito nenhum! Nosso trabalho é justamente te guiar em cada pose, ângulo e expressão. Você só precisa relaxar e aproveitar o momento — a gente cuida do resto. O resultado são fotos naturais e emocionantes, mesmo que você nunca tenha feito um ensaio antes.</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-in">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>O pai e os irmãos podem participar?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Sim! A presença da família torna o ensaio ainda mais especial. Pai, irmãos, avós e até os pets são super bem-vindos. Combinamos um momento para as fotos individuais da gestante e depois incluímos a família. É uma celebração do amor que está chegando!</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-in">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Quanto tempo dura o ensaio?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Em média <strong>1h a 2h</strong>, dependendo da quantidade de trocas de roupa e se o ensaio é no estúdio ou externo. O ritmo é calmo, com pausas para descanso — você não precisa se preocupar com pressa. O objetivo é que você aproveite cada minuto.</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-in">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Preciso de maquiagem profissional?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Não é obrigatório, mas uma maquiagem suave realça sua beleza natural. Se optar por fazer, prefira um look leve e natural — você mesma pode fazer ou chamar uma profissional que já conhece. O mais importante é que você se sinta linda e confortável.</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-in">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Como funciona a escolha das fotos?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Após a sessão, você recebe uma galeria online com todas as fotos. Você escolhe suas favoritas de acordo com o pacote contratado. As selecionadas passam por tratamento profissional e são entregues via link exclusivo para download em alta resolução.</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-in">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Como faço para agendar?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>É simples! Clique no botão do WhatsApp no canto da tela e nos envie uma mensagem. Bateremos um papo para entender o que você deseja, escolher a data ideal e explicar todos os detalhes. Pedimos apenas <strong>20% de adiantamento</strong> para reservar seu horário.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     INFORMAÇÕES
+     ═══════════════════════════════════════ -->
+<section id="info">
+<div class="container">
+<h2 class="section-title fade-in">COMO FUNCIONA</h2>
+<p class="section-subtitle fade-in">TUDO QUE VOCÊ PRECISA SABER</p>
+<div class="info-grid">
+<div class="info-item fade-in"><div class="info-icon"><i class="fas fa-heart"></i></div><p class="info-text">Após a sessão, você recebe uma galeria para <strong>escolher suas fotos favoritas</strong> de acordo com o pacote contratado</p></div>
+<div class="info-item fade-in"><div class="info-icon"><i class="fas fa-wand-magic-sparkles"></i></div><p class="info-text">As fotos selecionadas passam por <strong>tratamento profissional</strong> e são entregues via link exclusivo para download</p></div>
+<div class="info-item fade-in"><div class="info-icon"><i class="fas fa-lock"></i></div><p class="info-text">Adiantamento de <strong>20%</strong> para reserva da data e horário</p></div>
+<div class="info-item fade-in"><div class="info-icon"><i class="fas fa-truck"></i></div><p class="info-text">Ensaios externos em outras cidades: <strong>consultar taxa de deslocamento</strong></p></div>
+</div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     RODAPÉ
+     ═══════════════════════════════════════ -->
+<footer id="contato">
+<div class="container">
+<div class="footer-content">
+<div class="footer-logo fade-in">PRADO<span>.</span></div>
+<div class="footer-social fade-in">
+<a href="https://instagram.com/pradofotoevideo" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> @pradofotoevideo</a>
+</div>
+<p class="footer-copy">© 2026 Prado Foto e Vídeo — Ensaios Gestante e Fotografia. Todos os direitos reservados.</p>
+</div>
+</div>
+</footer>
+
+<a href="https://wa.me/5518981832328" target="_blank" class="whatsapp-float" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<!-- ═══════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════ -->
+<script src="assets/js/configgestante.js"></script>
+<script src="assets/js/hero-slideshow.js"></script>
+<script src="assets/js/pagina-foto.js"></script>
+</body>
+</html>
