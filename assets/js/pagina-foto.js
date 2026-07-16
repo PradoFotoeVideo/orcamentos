@@ -274,6 +274,12 @@ function handleKeyboardNav(e) {
   if (e.key === 'ArrowRight') mudarSlideLightbox(1);
 }
 
+/* ── FAQ ACCORDION ── */
+function toggleFaq(element) {
+  const item = element.parentElement;
+  item.classList.toggle('active');
+}
+
 window.abrirLightbox = abrirLightbox;
 window.fecharLightbox = fecharLightbox;
 window.mudarSlideLightbox = mudarSlideLightbox;
